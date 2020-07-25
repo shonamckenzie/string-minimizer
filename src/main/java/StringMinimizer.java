@@ -9,30 +9,45 @@ public class StringMinimizer {
 //	output entire string with minimized changes
 
 	//	string for input
-	static String string = "you say yes, I say no you say stop and I say go go go";
-	static String[] word = string.split(" ");
-	static int index;
+//	static String string = "you say yes, I say no you say stop and I say go go go";
+////	split the input string to get each single word
+//	static String[] word = string.split("[^a-zA-Z]");
+//	static String string = "jump4joy jump joy";
+//	static String[] word = string.split("[^a-zA-Z]");
 
 	public static String minimize(String[] word) {
-//split the input string to get each single word
-//loop through to get duplicate words
+		int[] index = new int[word.length];
+
 		for (int i = 0; i < word.length; i++) {
-			index = i;
 			for (int j = i + 1; j < word.length; j++) {
-				if(word[i].equals(word[j])) {
-					word[j] = "$" + index;
+				if (word[i].equals(word[j]) && index[j] == 0) {
+					index[j] = i + 1;
 				}
 			}
-//				System.out.println(count);
-		}System.out.println(Arrays.toString(word));
-		return Arrays.toString(word);
+		}
 
-	}
+			String output = "";
+			for (int i = 0; i < word.length; i++) {
+				if (index[i] == 0) {
+					if (i == 0)
+						output = word[i];
+					else
+						output = output + " " + word[i];
+				} else {
+					if (i == 0)
+						output = word[i];
+					else
+						output = output + " $" + (index[i] - 1);
+				}
+			}
+			System.out.println(output);
+			return output;
+		}
 
-	public static void main(String[] args) {
-//		call to minimize function
-		minimize(word);
-	}
+//	public static void main(String[] args) {
+////		call to minimize function
+//		minimize(word);
+//	}
 
 }
 
