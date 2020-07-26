@@ -16,3 +16,8 @@ Anything that is not an identifier is output as is and you do not need to parse 
 ## Testing ##
 
 JUnit testing framework used - tests are run from TestStringMinimizer class
+
+
+## Settings ##
+
+Maven project using SDK 1.8.0_212
